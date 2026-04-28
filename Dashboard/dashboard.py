@@ -13,7 +13,7 @@ st.title("Analisis Data E-Commerce Public Dataset")
 st.markdown("Dashboard interaktif untuk menjelajahi data pesanan, pengiriman, dan ulasan pelanggan.")
 
 # --- Load Data ---
-@st.chace_data
+@st.cache_data
 def load_data():
     df = pd.read_csv('Dashboard/main_data.csv')
 
