@@ -13,23 +13,20 @@ st.title("Analisis Data E-Commerce Public Dataset")
 st.markdown("Dashboard interaktif untuk menjelajahi data pesanan, pengiriman, dan ulasan pelanggan.")
 
 # --- Load Data ---
-@st.cache_data
+@st.chace_data
 def load_data():
-   df = pd.read_csv('../main_data.csv')
-   
-    # Convert timestamps
+    df = pd.read_csv('Dashboard/main_data.csv')
+
     df['order_purchase_timestamp'] = pd.to_datetime(df['order_purchase_timestamp'])
     df['order_delivered_customer_date'] = pd.to_datetime(df['order_delivered_customer_date'])
     df['order_estimated_delivery_date'] = pd.to_datetime(df['order_estimated_delivery_date'])
 
-    # Extract year and month
     df['purchase_year'] = df['order_purchase_timestamp'].dt.year
     df['purchase_month'] = df['order_purchase_timestamp'].dt.month
 
-    # Calculate delivery time and delay status
     df['delivery_time'] = (df['order_delivered_customer_date'] - df['order_purchase_timestamp']).dt.days
     df['is_delayed'] = df['order_delivered_customer_date'] > df['order_estimated_delivery_date']
-
+    
     return df
 
 df_original = load_data()
