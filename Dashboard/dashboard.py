@@ -13,7 +13,9 @@ st.markdown("Dashboard interaktif untuk menjelajahi data pesanan, pengiriman, da
 # --- Load Data ---
 @st.cache_data
 def load_data():
-    df = pd.read_csv('main_data.csv')
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(current_dir, 'main_data.csv')
+    df = pd.read_csv('../main_data.csv')
 
     # Convert timestamps
     df['order_purchase_timestamp'] = pd.to_datetime(df['order_purchase_timestamp'])
